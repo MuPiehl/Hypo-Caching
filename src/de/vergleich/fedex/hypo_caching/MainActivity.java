@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
 
@@ -16,8 +17,8 @@ public class MainActivity extends Activity {
 		
 		
 		
-		final Button bank = (Button) findViewById(R.id.bank);
-		final Button qrCode = (Button) findViewById(R.id.qr_code);
+		final ImageButton bank = (ImageButton) findViewById(R.id.bank);
+		final ImageButton qrCode = (ImageButton) findViewById(R.id.qr_code);
 		
 		bank.setOnClickListener(new OnClickListener() {
 			

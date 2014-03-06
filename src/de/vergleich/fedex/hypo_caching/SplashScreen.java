@@ -1,5 +1,7 @@
 package de.vergleich.fedex.hypo_caching;
 
+import java.util.UUID;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
