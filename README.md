@@ -1,8 +1,10 @@
 Hypo-Caching
 ============
 
-Änderung #1
+Ã„nderung #1
 
 Teilnehmer
 ----------
 Florian Kalis
+
+Lars Langhans
