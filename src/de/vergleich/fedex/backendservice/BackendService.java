@@ -93,7 +93,7 @@ public class BackendService {
 
 				Log.e(TAG, "ID: " + id);
 				// TODO: TestJSON austauschen
-				result = new JSONObject("{\"id\":\"357800059588758\", \"coins\":175}");
+				result = new JSONObject("{\"coins\":175}");
 				br.close();
 			}
 
@@ -110,15 +110,14 @@ public class BackendService {
 		}
 
 		User user = new User();
+		user.setId(id);
 		if (result != null) {
 			try {
-				user.setId(String.valueOf(result.get("id")));
 				user.setCoins(Integer.valueOf(result.getInt("coins")));
 			} catch (JSONException e) {
 				Log.e(TAG, e.toString());
 			}
 		} else {
-			user.setId(id);
 			user.setCoins(0);
 		}
 
