@@ -1,9 +1,10 @@
 package de.vergleich.fedex.backendservice;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.logging.Logger;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,45 +19,45 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-
 public class BackendService {
-	
+
+	private static final String NEWLINE = System.getProperty("line.separator");
 	private static final String TAG = "BackendService";
 	private static final String ACCEPTANCE_MIME = "application/json";
-	private static final String REST_SERVICE_URL = "localhost:8080/rest/";
-	
+	private static final String REST_SERVICE_URL = "http://localhost:8080/rest/";
+
 	private HttpClient httpClient = new DefaultHttpClient();
 	private HttpGet httpGet;
-	
+	private User user;
+
 	private static BackendService instance = null;
-	
+
 	public static BackendService getInstance() {
 		if (instance == null) {
 			instance = new BackendService();
 		}
-		
+
 		return instance;
 	}
-	
-	private void put(User user) {
+
+	public void put(User user) {
 		JSONObject json = new JSONObject();
 		HttpClient httpclient;
 		HttpPut request = null;
 		try {
 			json.accumulate("id", user.getId());
-			json.accumulate("name", user.getName());
 			json.accumulate("coins", user.getCoins());
 			httpclient = new DefaultHttpClient();
-	        request = new HttpPut(REST_SERVICE_URL);
-	        StringEntity s = new StringEntity(json.toString());
-	        s.setContentEncoding("UTF-8");
-	        s.setContentType(ACCEPTANCE_MIME);
+			request = new HttpPut(REST_SERVICE_URL);
+			StringEntity s = new StringEntity(json.toString());
+			s.setContentEncoding("UTF-8");
+			s.setContentType(ACCEPTANCE_MIME);
 
-	        request.setEntity(s);
-	        request.addHeader("accept", ACCEPTANCE_MIME);
+			request.setEntity(s);
+			request.addHeader("accept", ACCEPTANCE_MIME);
 			httpClient.execute(request);
-		
-		} catch (JSONException  e) {
+
+		} catch (JSONException e) {
 			Log.e(TAG, e.toString());
 		} catch (UnsupportedEncodingException e) {
 			Log.e(TAG, e.toString());
@@ -65,47 +66,66 @@ public class BackendService {
 		} catch (IOException e) {
 			Log.e(TAG, e.toString());
 		}
-		
-	
-		
+
 	}
-	
-	private User get(Integer id) {
+
+	public void get(String id) {
 		JSONObject result = null;
-		httpGet = new HttpGet(REST_SERVICE_URL+id);
+		httpGet = new HttpGet(REST_SERVICE_URL + id);
 		httpGet.addHeader("accept", ACCEPTANCE_MIME);
-		
+
+		BufferedReader br = null;
 		try {
 			HttpResponse response = httpClient.execute(httpGet);
 			HttpEntity entity = response.getEntity();
-			
-			if(entity != null) {
+
+			if (entity != null) {
 				InputStream is = entity.getContent();
-				result = new JSONObject(is.toString()); 
-				is.close();
+				InputStreamReader isr = new InputStreamReader(is);
+				br = new BufferedReader(isr);
+				String currentLine;
+				StringBuilder sb = new StringBuilder();
+				while ((currentLine = br.readLine()) != null) {
+					sb.append(currentLine).append(NEWLINE);
+				}
+				Log.d(TAG, "Received " + sb.toString());
+				// 03-06 21:12:59.800: E/BackendService(19914): ID: 357800059588758
+
+				Log.e(TAG, "ID: " + id);
+				// TODO: TestJSON austauschen
+				result = new JSONObject("{\"id\":\"357800059588758\", \"coins\":175}");
+				br.close();
 			}
-			
-		} catch (ClientProtocolException e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null) {
+					br.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		
+
 		User user = new User();
 		if (result != null) {
 			try {
-				user.setId(Integer.valueOf(result.getInt("id")));
-				user.setName(String.valueOf(result.get("name")));
+				user.setId(String.valueOf(result.get("id")));
 				user.setCoins(Integer.valueOf(result.getInt("coins")));
 			} catch (JSONException e) {
 				Log.e(TAG, e.toString());
 			}
+		} else {
+			user.setId(id);
+			user.setCoins(0);
 		}
-		
-		return user;
+
+		this.user = user;
 	}
 
+	public User getUser() {
+		return user;
+	}
 }

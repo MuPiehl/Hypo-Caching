@@ -5,5 +5,6 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_whack_amole">WhackAMoleActivity</string>
+    <string name="splash_hypoport_logo">Hypoport-Logo</string>
 
 </resources>
