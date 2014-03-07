@@ -5,5 +5,6 @@ public enum Element {
 	FUNDAMENT,
 	ROHBAU,
 	ROHBAU_DACH,
+	HAUS,
 	BAUM;
 }
