@@ -21,6 +21,7 @@ public class MainActivity extends Activity {
 		
 		final ImageButton bank = (ImageButton) findViewById(R.id.bank);
 		final ImageButton qrCode = (ImageButton) findViewById(R.id.qr_code);
+		final ImageButton quiz = (ImageButton) findViewById(R.id.quiz);
 		
 		bank.setOnClickListener(new OnClickListener() {
 			
@@ -35,6 +36,14 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				startActivity(new Intent(MainActivity.this, KaufmenueActivity.class));
+			}
+		});
+		
+		quiz.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				startActivity(new Intent(MainActivity.this, QuizActivity.class));
 			}
 		});
 	}

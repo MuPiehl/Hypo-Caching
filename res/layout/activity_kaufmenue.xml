@@ -21,7 +21,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/coin"
-            android:text="173 +- 50"
+            android:text=""
             android:textSize="15sp" />
 
         <ImageView
@@ -40,10 +40,11 @@
 
         <ImageButton
             android:id="@+id/haus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
             android:layout_marginTop="25sp"
             android:background="@null"
+            android:scaleType="fitCenter"
             android:src="@drawable/haus" />
 
         <TextView
@@ -53,7 +54,7 @@
             android:layout_alignTop="@+id/haus"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@+id/haus"
-            android:text="Kosten: 35 Coins"
+            android:text="Kosten: 45 Coins"
             android:textSize="15sp" />
 
         <ImageButton
@@ -74,10 +75,11 @@
 
         <ImageButton
             android:id="@+id/baum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
             android:layout_marginTop="25sp"
             android:background="@null"
+            android:scaleType="fitCenter"
             android:src="@drawable/haus" />
 
         <TextView

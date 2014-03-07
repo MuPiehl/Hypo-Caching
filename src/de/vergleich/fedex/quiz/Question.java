@@ -1,5 +1,6 @@
 package de.vergleich.fedex.quiz;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Question {
@@ -25,6 +26,12 @@ public class Question {
 
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
+	}
+	
+	public Question addAnswer(Answer answer) {
+		if (answers == null) answers = new ArrayList<>();
+		answers.add(answer);
+		return this;
 	}
 	
 }
