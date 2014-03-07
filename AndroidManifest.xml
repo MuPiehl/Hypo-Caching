@@ -58,6 +58,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity
+            android:name="de.vergleich.fedex.hypo_caching.ImageMainActivity"
+            android:label="@string/title_activity_image_main" >
+        </activity>
     </application>
 
 </manifest>

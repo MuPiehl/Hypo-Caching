@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.vergleich.fedex.backendservice.BackendService;
@@ -28,6 +29,8 @@ public class MainActivity extends Activity {
 		final ImageButton qrCode = (ImageButton) findViewById(R.id.qr_code);
 		final ImageButton quiz = (ImageButton) findViewById(R.id.quiz);
 		final ImageButton chopATree = (ImageButton) findViewById(R.id.chopatree);
+		
+	//	final ImageView savanne = (ImageView) findViewById
 		
 		bank.setOnClickListener(new OnClickListener() {
 
