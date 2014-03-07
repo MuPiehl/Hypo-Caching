@@ -27,6 +27,7 @@ public class SplashScreenActivity extends Activity {
 			final TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 			final String deviceId = telephonyManager.getDeviceId();
 			BackendService.getInstance().get(deviceId);
+			BackendService.getInstance().post(BackendService.getInstance().getUser());
 
 			try {
 				Thread.sleep(500);

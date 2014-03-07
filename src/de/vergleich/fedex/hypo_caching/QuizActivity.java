@@ -87,6 +87,7 @@ public class QuizActivity extends Activity {
 						Toast.LENGTH_SHORT).show();
 				BackendService.getInstance().getUser()
 						.addCoins(this.question.getCoins());
+				new UpdateUserDataTask().execute();
 
 				// new LoadNextQuestion().execute();
 				Intent intent = new Intent(
@@ -118,6 +119,7 @@ public class QuizActivity extends Activity {
 							Toast.LENGTH_SHORT).show();
 					
 					BackendService.getInstance().getUser().addCoins(50);
+					new UpdateUserDataTask().execute();
 					
 					new LoadNextQuestion().execute();
 				} else {
