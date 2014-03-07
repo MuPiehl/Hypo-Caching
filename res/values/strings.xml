@@ -20,8 +20,9 @@
     <string name="test">whack_button_qr</string>
 
     <!-- ChopATreeActivity -->
-    <string name="chopatree_title"><![CDATA[Benutze das Ger&auml;t als Axt]]></string>
-    <string name="chopatree_msg_tree_down"><![CDATA[Baum f&auml;&auml;&auml;llt!]]></string>
-    <string name="chopatree_msg_wood_done"><![CDATA[Holz verf&uuml;gbar]]></string>
+    <string name="chopatree_title"><![CDATA[Benutze das Gerät als Axt]]></string>
+    <string name="chopatree_msg_tree_down"><![CDATA[Baum fäääällt!]]></string>
+    <string name="chopatree_msg_wood_done"><![CDATA[Holz verfügbar]]></string>
+    <string name="chopatree_msg_cancel"><![CDATA[Aktion abgebrochen - leider kein Holz]]></string>
 
 </resources>

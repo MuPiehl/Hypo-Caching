@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import de.vergleich.fedex.backendservice.BackendService;
 import de.vergleich.fedex.backendservice.User;
 import de.vergleich.fedex.chopatree.ChopATreeActivity;
 
 public class MainActivity extends Activity {
+
+	private static final int REQUEST_CHOPATREE = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +49,40 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				startActivity(new Intent(MainActivity.this,
-						ChopATreeActivity.class));
+				startActivityForResult(new Intent(MainActivity.this,
+						ChopATreeActivity.class), REQUEST_CHOPATREE);
 			}
 		});
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (requestCode == REQUEST_CHOPATREE) {
+			switch (resultCode) {
+			case RESULT_OK:
+				if (data != null) {
+					// TODO: Aktion verarbeiten - z.B. Coins hochzählen
+					showToastMessage(R.string.chopatree_msg_wood_done);
+				}
+				break;
+			case RESULT_CANCELED:
+				showToastMessage(R.string.chopatree_msg_cancel);
+				break;
+			}
+		}
+	}
+
+	private void showToastMessage(int id) {
+		showToastMessage(getString(id));
+	}
+
+	private void showToastMessage(String message) {
+		System.out.println(message); // FIXME: Das hier ist nur zum Spielen :)
+		Toast toast = Toast.makeText(this.getApplicationContext(), message,
+				Toast.LENGTH_LONG);
+		toast.show();
 	}
 
 	@Override
