@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/coin_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/coin"
+            android:text="173 +- 50"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/coin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription=""
+            android:src="@drawable/hypocoins" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/question_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15sp"
+            android:text="@string/splash_text"
+            android:textColor="@color/gray"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/answer_button1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            style="@style/ButtonText"
+            android:background="@color/red"
+            android:text="Button" />
+            
+        <Button
+            android:id="@+id/answer_button2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            style="@style/ButtonText"
+            android:background="@color/red"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/answer_button3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            style="@style/ButtonText"
+            android:background="@color/red"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/answer_button4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            style="@style/ButtonText"
+            android:background="@color/red"
+            android:text="Button" />
+    </LinearLayout>
+
+</LinearLayout>

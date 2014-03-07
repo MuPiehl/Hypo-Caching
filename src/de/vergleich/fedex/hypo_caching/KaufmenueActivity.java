@@ -1,7 +1,5 @@
 package de.vergleich.fedex.hypo_caching;
 
-import de.vergleich.fedex.backendservice.BackendService;
-import de.vergleich.fedex.backendservice.User;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +7,8 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import de.vergleich.fedex.backendservice.BackendService;
+import de.vergleich.fedex.backendservice.User;
 
 public class KaufmenueActivity extends Activity {
 
@@ -24,18 +24,7 @@ public class KaufmenueActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				if (BackendService.getInstance().getUser().getCoins() >= 35) {
-					Toast.makeText(KaufmenueActivity.this,
-							"Kaufe Haus für 35 Coins", Toast.LENGTH_SHORT)
-							.show();
-					BackendService.getInstance().getUser().addCoins(-35);
-					updateCoinDisplay();
-				} else {
-					Toast.makeText(
-							KaufmenueActivity.this,
-							"Sie haben nicht hinreichend viele Coins!!!!11einseinself",
-							Toast.LENGTH_SHORT).show();
-				}
+				tryToBuy("Haus", 45);
 			}
 		});
 
@@ -44,19 +33,7 @@ public class KaufmenueActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				if (BackendService.getInstance().getUser().getCoins() >= 35) {
-					Toast.makeText(KaufmenueActivity.this,
-							"Kaufe Baum für 35 Coins", Toast.LENGTH_SHORT)
-							.show();
-					BackendService.getInstance().getUser().addCoins(-35);
-					updateCoinDisplay();
-
-				} else {
-					Toast.makeText(
-							KaufmenueActivity.this,
-							"Sie haben nicht hinreichend viele Coins!!!!11einseinself",
-							Toast.LENGTH_SHORT).show();
-				}
+				tryToBuy("Baum", 35);
 			}
 		});
 	}
@@ -71,6 +48,26 @@ public class KaufmenueActivity extends Activity {
 		final User user = BackendService.getInstance().getUser();
 		final TextView coins = (TextView) findViewById(R.id.coin_amount);
 		coins.setText(String.valueOf(user.getCoins()));
+	}
+
+	private void tryToBuy(final String elementName, final Integer coins) {
+		if (BackendService.getInstance().getUser().getCoins() >= coins) {
+			Toast.makeText(
+					KaufmenueActivity.this,
+					getResources().getString(
+							R.string.kaufmenue_kauf_erfolgreich, elementName,
+							coins), Toast.LENGTH_SHORT).show();
+			BackendService.getInstance().getUser().addCoins(-coins);
+			updateCoinDisplay();
+
+		} else {
+
+			Toast.makeText(
+					KaufmenueActivity.this,
+					getResources().getString(
+							R.string.kaufmenue_nicht_genug_coins),
+					Toast.LENGTH_SHORT).show();
+		}
 	}
 
 }
