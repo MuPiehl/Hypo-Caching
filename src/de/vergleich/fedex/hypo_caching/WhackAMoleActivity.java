@@ -1,5 +1,6 @@
 package de.vergleich.fedex.hypo_caching;
 
+import de.vergleich.fedex.hypo_caching.whackamole.Playground;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -23,6 +24,17 @@ public class WhackAMoleActivity extends Activity {
 			@Override
 				public void onClick(View arg0) {
 				startActivity(new Intent(WhackAMoleActivity.this, SammelQRActivity.class));
+			}
+		});
+		
+		Button quitBtn = (Button) findViewById(R.id.playground1_quit_btn);
+		quitBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Playground  playground = (Playground) findViewById(R.id.playground1);
+				playground.stop();	
+				playground.invalidate();
 			}
 		});
 	}
