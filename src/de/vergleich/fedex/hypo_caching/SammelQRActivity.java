@@ -3,6 +3,7 @@ package de.vergleich.fedex.hypo_caching;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -56,6 +57,7 @@ public class SammelQRActivity extends Activity {
 				format = "Format: "
 						+ intent.getStringExtra("SCAN_RESULT_FORMAT") + "\n";
 				// Handle successful scan
+				Log.e("QR", contents);
 			} else if (resultCode == RESULT_CANCELED) {
 				// Handle cancel
 				contents = "- Scan abgebrochen -";

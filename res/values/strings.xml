@@ -19,6 +19,10 @@
     <string name="sammel_button">Start Scan</string>
     <string name="test">whack_button_qr</string>
     
+    <!-- Quiz -->
+    <string name="quiz_falsch">Diese Antwort ist falsch.</string>
+    <string name="quiz_qr_falsch">Dieser QR-Code ist falsch.</string>
+    
     <!-- Kaufmenue -->
     <string name="kaufmenue_nicht_genug_coins">Sie haben nicht genug Coins, um dieses Element zu kaufen.</string>
     <string name="kaufmenue_kauf_erfolgreich">Sie haben %1$s für %2$d Coins gekauft.</string>

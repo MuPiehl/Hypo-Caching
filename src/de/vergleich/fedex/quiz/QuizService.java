@@ -10,17 +10,38 @@ public class QuizService {
 	private int currentIndex;
 
 	private QuizService() {
-		questions = new ArrayList<>();
-		questions.add(new Question("Warum?")
-				.addAnswer(new Answer("Darum!", false))
-				.addAnswer(new Answer("Weiﬂt du doch nicht", true))
-				.addAnswer(new Answer("Mir doch egal", false))
-				.addAnswer(new Answer("Joa egal", false)));
-		questions.add(new Question("Warum nicht?")
-				.addAnswer(new Answer("Darum!", false))
-				.addAnswer(new Answer("Egal", false))
-				.addAnswer(new Answer("Weil es eben so ist", true))
-				.addAnswer(new Answer("Joa egal", false)));
+		questions = new ArrayList<Question>();
+		questions
+				.add(new Question(
+						"Wer besucht die Kollegin am Empfang t‰glich?", 1)
+						.addAnswer(new Answer("Der Weihnachtsmann", false))
+						.addAnswer(new Answer("Der Zonk", false))
+						.addAnswer(new Answer("Blitz Reinigungsservice", false))
+						.addAnswer(new Answer("Der Postmann", true))
+						.setCorrectAnswerText(
+								"Richtig! Deine n‰chste Station ist bei Michaela am Empfang, lass Dir dort einen QR-Code zeigen.")
+						.setExpectedQRCode("http://www.youtube.com/watch?v=GvRuD2cAP8g#895965996301347121687526676682950120014487528978682706480679915756456268682682597341345448000000005362597374986042682340672063954962259597470681346661341329948256159003517341298342965810565681160000127643139341322"));
+		questions
+				.add(new Question(
+						"Womit verbringen die L¸becker Kollegen ihre Pausen?",
+						1)
+						.addAnswer(new Answer("Eiskunstlauf", false))
+						.addAnswer(new Answer("Tischkicker", true))
+						.addAnswer(new Answer("Wrestling", false))
+						.addAnswer(new Answer("Kugelstoﬂen", false))
+						.setCorrectAnswerText(
+								"Richtig! Deine n‰chste Station ist am Tischkicker im Casino.")
+						.setExpectedQRCode("bit.ly/1gd5TPq#513279087189312605661681347911960006006017333342679237490682560096258000000405341681289105661329682648000956035445010701794827238108362351762522677341341600000128000342959309341638678685266015944031533981341340672619938690698088000000000341336701341954677362682128007958512412858661"));
+		questions
+				.add(new Question(
+						"Was gibt es NICHT in unseren roten K¸hlschr‰nken?", 1)
+						.addAnswer(new Answer("Milch", false))
+						.addAnswer(new Answer("Champagner & Kaviar", true))
+						.addAnswer(new Answer("Joghurt", false))
+						.addAnswer(new Answer("Pudding", false))
+						.setCorrectAnswerText(
+								"Richtig! Deine n‰chste Station ist der rote K¸hlschrank im Casino.")
+						.setExpectedQRCode("http://www.youtube.com/watch?v=QBtciu6Onnc"));
 
 		currentIndex = 0;
 	}
@@ -31,13 +52,14 @@ public class QuizService {
 		return instance;
 	}
 
-	public Question getNextQuestion() {
-		final Question question = questions.get(currentIndex++);
-
+	public void nextQuestion() {
+		currentIndex++;
 		if (currentIndex >= questions.size()) {
 			currentIndex = 0;
 		}
+	}
 
-		return question;
+	public Question getCurrentQuestion() {
+		return questions.get(currentIndex);
 	}
 }
