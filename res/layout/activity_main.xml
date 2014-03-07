@@ -75,7 +75,7 @@
             android:layout_alignTop="@+id/bank"
             android:layout_alignParentRight="true"
             android:background="@null"
-            android:src="@drawable/chopatree_button" />
+            android:src="@drawable/holz_saege" />
         
         <ImageButton
             android:id="@+id/quiz"
