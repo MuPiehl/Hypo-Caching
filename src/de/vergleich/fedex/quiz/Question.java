@@ -29,7 +29,7 @@ public class Question {
 	}
 	
 	public Question addAnswer(Answer answer) {
-		if (answers == null) answers = new ArrayList<>();
+		if (answers == null) answers = new ArrayList<Answer>();
 		answers.add(answer);
 		return this;
 	}

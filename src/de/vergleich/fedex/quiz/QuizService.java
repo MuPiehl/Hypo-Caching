@@ -10,7 +10,7 @@ public class QuizService {
 	private int currentIndex;
 
 	private QuizService() {
-		questions = new ArrayList<>();
+		questions = new ArrayList<Question>();
 		questions.add(new Question("Warum?")
 				.addAnswer(new Answer("Darum!", false))
 				.addAnswer(new Answer("Weiﬂt du doch nicht", true))
