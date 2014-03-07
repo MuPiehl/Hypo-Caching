@@ -1,5 +1,6 @@
 package de.vergleich.fedex.hypo_caching;
 
+import de.vergleich.fedex.backendservice.BackendService;
 import de.vergleich.fedex.hypo_caching.whackamole.Playground;
 import android.os.Bundle;
 import android.app.Activity;
@@ -44,6 +45,12 @@ public class WhackAMoleActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.whack_amole, menu);
 		return true;
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		new UpdateUserDataTask().execute();
 	}
 
 }
