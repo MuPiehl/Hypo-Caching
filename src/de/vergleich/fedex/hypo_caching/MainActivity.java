@@ -25,8 +25,9 @@ public class MainActivity extends Activity {
 
 		final ImageButton bank = (ImageButton) findViewById(R.id.bank);
 		final ImageButton qrCode = (ImageButton) findViewById(R.id.qr_code);
+		final ImageButton quiz = (ImageButton) findViewById(R.id.quiz);
 		final ImageButton chopATree = (ImageButton) findViewById(R.id.chopatree);
-
+		
 		bank.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -51,6 +52,14 @@ public class MainActivity extends Activity {
 			public void onClick(View arg0) {
 				startActivityForResult(new Intent(MainActivity.this,
 						ChopATreeActivity.class), REQUEST_CHOPATREE);
+			}
+		});
+		
+		quiz.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				startActivity(new Intent(MainActivity.this, QuizActivity.class));
 			}
 		});
 	}
