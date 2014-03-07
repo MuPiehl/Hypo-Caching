@@ -73,8 +73,7 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO
-//				startActivity(new Intent(MainActivity.this, QuizActivity.class));
+				startActivity(new Intent(MainActivity.this, HausActivity.class));
 			}
 		});
 		
