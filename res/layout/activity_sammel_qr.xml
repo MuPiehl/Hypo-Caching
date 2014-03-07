@@ -15,7 +15,7 @@
         android:text="@string/sammel_Text" />
 
     <Button
-        android:id="@+id/button_to_qr_whack"
+        android:id="@+id/button_sammel_qr_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
@@ -23,5 +23,14 @@
         android:layout_marginLeft="81dp"
         android:layout_marginTop="43dp"
         android:text="@string/sammel_button" />
+
+     <TextView
+         android:id="@+id/qr_erg_textView"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:layout_below="@+id/button_sammel_qr_start"
+         android:layout_marginTop="52dp"
+         android:text="@string/qr_text_erg" />
 
 </RelativeLayout>

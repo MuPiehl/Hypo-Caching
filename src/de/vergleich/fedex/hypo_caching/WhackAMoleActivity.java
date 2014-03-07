@@ -21,8 +21,7 @@ public class WhackAMoleActivity extends Activity {
 		button.setOnClickListener(new OnClickListener() {
 			
 			@Override
-			// MPi-T noch "back"
-			public void onClick(View arg0) {
+				public void onClick(View arg0) {
 				startActivity(new Intent(WhackAMoleActivity.this, SammelQRActivity.class));
 			}
 		});

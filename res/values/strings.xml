@@ -10,9 +10,14 @@
 
     <color name="white">#FFFFFF</color>
 
+    <string name="whack_button_qr">zur real Actio</string>
+     
     <string name="title_activity_sammel_qr">SammelQRActivity</string>
+    <string name="qr_text_erg">Ergebniss</string>
     
     <string name="sammel_Text">Bitte Sammeln Sie Lehm &amp; Holz bei Dr. Klein</string>
-        <string name="sammel_button">Start Scan</string>
+    <string name="sammel_button">Start Scan</string>
+    <string name="test">whack_button_qr</string>
+
 
 </resources>
