@@ -37,6 +37,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="de.vergleich.fedex.hypo_caching.KaufmenueActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="de.vergleich.fedex.hypo_caching.SammelQRActivity"
             android:label="@string/title_activity_sammel_qr" >
         </activity>
