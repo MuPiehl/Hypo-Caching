@@ -1,7 +1,5 @@
 package de.vergleich.fedex.hypo_caching;
 
-import de.vergleich.fedex.backendservice.BackendService;
-import de.vergleich.fedex.backendservice.User;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import de.vergleich.fedex.backendservice.BackendService;
 
 public class SplashScreen extends Activity {
 
@@ -24,11 +23,11 @@ public class SplashScreen extends Activity {
 
 		@Override
 		protected Void doInBackground(Void... arg0) {
-			
+
 			final TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 			final String deviceId = telephonyManager.getDeviceId();
 			BackendService.getInstance().get(deviceId);
-			
+
 			try {
 				Thread.sleep(2500);
 

@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -39,6 +40,15 @@
         <activity
             android:name="de.vergleich.fedex.hypo_caching.SammelQRActivity"
             android:label="@string/title_activity_sammel_qr" >
+        </activity>
+        <!-- Holzhacken -->
+        <activity
+            android:name="de.vergleich.fedex.chopatree.ChopATreeActivity"
+            android:label="@string/chopatree_title"
+            android:parentActivityName="de.hypoport.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
     </application>
 

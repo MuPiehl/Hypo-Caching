@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import de.vergleich.fedex.backendservice.BackendService;
 import de.vergleich.fedex.backendservice.User;
+import de.vergleich.fedex.chopatree.ChopATreeActivity;
 
 public class MainActivity extends Activity {
 
@@ -25,6 +26,7 @@ public class MainActivity extends Activity {
 		
 		final ImageButton bank = (ImageButton) findViewById(R.id.bank);
 		final ImageButton qrCode = (ImageButton) findViewById(R.id.qr_code);
+		final ImageButton chopATree = (ImageButton) findViewById(R.id.chopatree);
 		
 		bank.setOnClickListener(new OnClickListener() {
 			
@@ -41,5 +43,13 @@ public class MainActivity extends Activity {
 				System.exit(1);
 			}
 		});
-	}
+
+		chopATree.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				startActivity(new Intent(MainActivity.this, ChopATreeActivity.class));
+			}
+		});
+}
 }
