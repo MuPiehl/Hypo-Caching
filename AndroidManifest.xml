@@ -20,7 +20,7 @@
 
         <!-- Splash Screen -->
         <activity
-            android:name="de.vergleich.fedex.hypo_caching.SplashScreen"
+            android:name="de.vergleich.fedex.hypo_caching.SplashScreenActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +35,10 @@
         <!-- TODO -->
         <activity
             android:name="de.vergleich.fedex.hypo_caching.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="de.vergleich.fedex.hypo_caching.KaufmenueActivity"
             android:label="@string/app_name" >
         </activity>
         <activity

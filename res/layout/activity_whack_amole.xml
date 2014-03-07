@@ -20,6 +20,6 @@
         android:layout_alignBottom="@+id/playground1"
         android:layout_alignLeft="@+id/playground1"
         android:layout_marginLeft="29dp"
-        android:text="Button" />
+        android:text="@string/whack_button_qr" />
 
 </RelativeLayout>

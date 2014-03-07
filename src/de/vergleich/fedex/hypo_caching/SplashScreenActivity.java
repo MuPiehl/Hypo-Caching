@@ -9,12 +9,12 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import de.vergleich.fedex.backendservice.BackendService;
 
-public class SplashScreen extends Activity {
+public class SplashScreenActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.splash_screen);
+		setContentView(R.layout.activity_splash_screen);
 
 		new SplashScreenTask().execute();
 	}
@@ -42,7 +42,7 @@ public class SplashScreen extends Activity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 
-			startActivity(new Intent(SplashScreen.this, MainActivity.class));
+			startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
 			finish();
 		}
 
