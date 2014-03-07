@@ -1,33 +1,28 @@
 package de.vergleich.fedex.chopatree;
-
-import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.os.Bundle;
-import android.os.Vibrator;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import de.vergleich.fedex.hypo_caching.R;
+import android.content.*;
+import android.hardware.*;
+import android.os.*;
+import android.widget.*;
+import android.os.Vibrator;
 
 //Don't forget to include permission in AndroidManifest.xml file:
 //<uses-permission android:name="android.permission.VIBRATE"/>
-public class ChopATreeActivity extends ActivityEnhanced implements
-		SensorEventListener {
+public class ChopATreeActivity extends ActivityEnhanced implements SensorEventListener
+  {
 
 	public static final String KEY_PROGRESS = "ChopATreeActivity.progress";
 
-	private SensorManager sensorManager;
-	private boolean isHitting = false;
+	private SensorManager sensorManager; 
+	private boolean isHitting = false;  
 	private long lastUpdate;
-	private ProgressBar progressBar;
+	private ProgressBar progressBar; 
 	private Vibrator vibrator;
-
+	
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_chopatree);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chopatree);
 
 		int progress = this.savedInstanceState.getInt(KEY_PROGRESS, 0);
 		progressBar = (ProgressBar) findViewById(R.id.chopatreeProgressBar);
@@ -36,80 +31,64 @@ public class ChopATreeActivity extends ActivityEnhanced implements
 		ImageView image = (ImageView) findViewById(R.id.chopatreeImageView);
 		image.setImageResource(R.drawable.tree);
 
-		vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+		vibrator= (Vibrator) getSystemService(VIBRATOR_SERVICE);
+		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE); 
 		lastUpdate = System.currentTimeMillis();
 
-	}
-
+	  }
 	// <SensorEventListener>
-	@Override
-	public void onSensorChanged(SensorEvent event) {
-		if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-			getAccelerometer(event);
-		}
-	}
+	@Override public void onSensorChanged(SensorEvent event) { 
+		if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) { 
+			getAccelerometer(event); 
+		  }
+	  }
 
-	private void getAccelerometer(SensorEvent event) {
-		float[] values = event.values; // Movement
-		float x = values[0];
-		float y = values[1];
+	private void getAccelerometer(SensorEvent event) { 
+		float[] values = event.values; // Movement 
+		float x = values[0]; 
+		float y = values[1]; 
 		float z = values[2];
 
-		float accelationSquareRoot = (x * x + y * y + z * z)
-				/ (SensorManager.GRAVITY_EARTH * SensorManager.GRAVITY_EARTH);
-		long actualTime = System.currentTimeMillis();
-		if (accelationSquareRoot >= 2) {
-			if (actualTime - lastUpdate < 100) {
-				return;
-			}
-			lastUpdate = actualTime;
-			if (isHitting) {
+		float accelationSquareRoot = (x * x + y * y + z * z) / (SensorManager.GRAVITY_EARTH * SensorManager.GRAVITY_EARTH); 
+		long actualTime = System.currentTimeMillis(); 
+		if (accelationSquareRoot >= 2) { 
+			if (actualTime - lastUpdate < 100) { 
+				return; 
+			  } 
+			lastUpdate = actualTime; 
+			if (isHitting) { 
 				// Vibrate for 500 milliseconds
-				if (vibrator != null) {
-					vibrator.vibrate(500);
+				if(vibrator!=null){
+				  vibrator.vibrate(500);
 				}
-				progressBar.incrementProgressBy(Math
-						.round(accelationSquareRoot * 2.5f));
+				progressBar.incrementProgressBy(Math.round(accelationSquareRoot * 2.5f));
 				if (progressBar.getProgress() >= 100) {
 					showToastMessage(R.string.chopatree_msg_tree_down);
-					showTreeDownAnimation();
-					// return to caller
-					Intent returnIntent = new Intent();
+					//return to caller
+					Intent returnIntent = new Intent(); 
 					setResult(RESULT_OK, returnIntent);
 					finish();
-				}
-			}
-			isHitting = !isHitting;
-		}
-	}
+				  }
+			  }
+			isHitting = !isHitting; 
+		  } 
+	  }
 
-	private void showTreeDownAnimation() {
-		ImageView image = (ImageView) findViewById(R.id.chopatreeImageView);
-		image.setImageResource(R.drawable.tree_down);		
-	}
+	@Override public void onAccuracyChanged(Sensor sensor, int accuracy) {
+	  }
+// </SensorEventListener>
+	
+	@Override protected void onResume() { 
+		super.onResume(); 
+// register this class as a listener for the orientation and 
+// accelerometer sensors 
+		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL); 
+	  }
 
-	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-	}
-
-	// </SensorEventListener>
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		// register this class as a listener for the orientation and
-		// accelerometer sensors
-		sensorManager.registerListener(this,
-				sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-				SensorManager.SENSOR_DELAY_NORMAL);
-	}
-
-	@Override
-	protected void onPause() {
-		// unregister listener
-		super.onPause();
-		sensorManager.unregisterListener(this);
-	}
-
-}
+	@Override protected void onPause() { 
+// unregister listener 
+		super.onPause(); 
+		sensorManager.unregisterListener(this); 
+	  }
+	  
+  }

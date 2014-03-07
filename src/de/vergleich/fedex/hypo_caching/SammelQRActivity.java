@@ -1,9 +1,10 @@
 package de.vergleich.fedex.hypo_caching;
 
+import de.vergleich.fedex.backendservice.BackendService;
+import de.vergleich.fedex.backendservice.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -56,8 +57,20 @@ public class SammelQRActivity extends Activity {
 				contents = intent.getStringExtra("SCAN_RESULT");
 				format = "Format: "
 						+ intent.getStringExtra("SCAN_RESULT_FORMAT") + "\n";
+				
+				final User user = BackendService.getInstance().getUser();
+
+				if(contents.contains("HypoportScan_50"))
+				{
+								user.addCoins(50);
+					this.finish();
+				}
+				else
+				{
+					user.addCoins(1);
+				}
+					
 				// Handle successful scan
-				Log.e("QR", contents);
 			} else if (resultCode == RESULT_CANCELED) {
 				// Handle cancel
 				contents = "- Scan abgebrochen -";
