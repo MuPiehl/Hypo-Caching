@@ -92,8 +92,10 @@
             android:id="@+id/zonk"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
             android:src="@drawable/zonk_selfpaint"
-            android:visibility="visible" />
+            android:visibility="gone" />
         
     </LinearLayout>
 

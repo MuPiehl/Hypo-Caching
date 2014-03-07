@@ -29,6 +29,8 @@ public class MainActivity extends Activity {
 		final ImageButton qrCode = (ImageButton) findViewById(R.id.qr_code);
 		final ImageButton quiz = (ImageButton) findViewById(R.id.quiz);
 		final ImageButton chopATree = (ImageButton) findViewById(R.id.chopatree);
+		final ImageButton haus = (ImageButton) findViewById(R.id.haus);
+		final ImageButton whackAMole = (ImageButton) findViewById(R.id.whack_a_mole);
 		
 	//	final ImageView savanne = (ImageView) findViewById
 		
@@ -37,7 +39,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				startActivity(new Intent(MainActivity.this,
-						WhackAMoleActivity.class));
+						KaufmenueActivity.class));
 			}
 		});
 
@@ -46,7 +48,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				startActivity(new Intent(MainActivity.this,
-						KaufmenueActivity.class));
+						SammelQRActivity.class));
 			}
 		});
 
@@ -64,6 +66,23 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				startActivity(new Intent(MainActivity.this, QuizActivity.class));
+			}
+		});
+		
+		haus.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO
+//				startActivity(new Intent(MainActivity.this, QuizActivity.class));
+			}
+		});
+		
+		whackAMole.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				startActivity(new Intent(MainActivity.this, WhackAMoleActivity.class));
 			}
 		});
 	}

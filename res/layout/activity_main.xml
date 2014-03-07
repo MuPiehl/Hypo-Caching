@@ -40,38 +40,65 @@
 
         <ImageButton
             android:id="@+id/bank"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:scaleType="fitXY"
             android:layout_marginTop="74dp"
             android:background="@null"
-            android:src="@drawable/bank_button" />
+            android:src="@drawable/kiosk" />
 
         <ImageButton
             android:id="@+id/qr_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:scaleType="fitXY"
             android:layout_below="@+id/bank"
             android:layout_marginTop="34dp"
             android:background="@null"
-            android:src="@drawable/qr_button" />
+            android:src="@drawable/qrcode" />
 
         <ImageButton
-            android:id="@+id/quiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/whack_a_mole"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:scaleType="fitXY"
             android:layout_below="@+id/qr_code"
             android:layout_marginTop="34dp"
             android:background="@null"
-            android:src="@drawable/quiz_button" />
+            android:src="@drawable/steinbruch" />
 
         <ImageButton
             android:id="@+id/chopatree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/quiz"
-            android:layout_marginTop="34dp"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:scaleType="fitXY"
+            android:layout_alignTop="@+id/bank"
+            android:layout_alignParentRight="true"
             android:background="@null"
             android:src="@drawable/chopatree_button" />
-    </RelativeLayout>
+        
+        <ImageButton
+            android:id="@+id/quiz"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:scaleType="fitXY"
+            android:layout_below="@+id/chopatree"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="34dp"
+            android:background="@null"
+            android:src="@drawable/quiz2" />
+
+        <ImageButton
+            android:id="@+id/haus"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:scaleType="fitXY"
+            android:layout_below="@+id/quiz"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="34dp"
+            android:background="@null"
+            android:src="@drawable/haus" />
+
+        </RelativeLayout>
 
 </LinearLayout>

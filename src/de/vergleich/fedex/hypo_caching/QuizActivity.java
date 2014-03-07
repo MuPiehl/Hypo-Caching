@@ -159,17 +159,17 @@ public class QuizActivity extends Activity {
 			super.onPreExecute();
 
 			zonk.setVisibility(View.VISIBLE);
-			answerButton1.setVisibility(View.INVISIBLE);
-			answerButton2.setVisibility(View.INVISIBLE);
-			answerButton3.setVisibility(View.INVISIBLE);
-			answerButton4.setVisibility(View.INVISIBLE);
+			answerButton1.setVisibility(View.GONE);
+			answerButton2.setVisibility(View.GONE);
+			answerButton3.setVisibility(View.GONE);
+			answerButton4.setVisibility(View.GONE);
 		}
 
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 
-			zonk.setVisibility(View.INVISIBLE);
+			zonk.setVisibility(View.GONE);
 			answerButton1.setVisibility(View.VISIBLE);
 			answerButton2.setVisibility(View.VISIBLE);
 			answerButton3.setVisibility(View.VISIBLE);

@@ -21,7 +21,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/coin"
-            android:text=""
+            android:text="15151"
             android:textSize="15sp" />
 
         <ImageView
@@ -54,19 +54,19 @@
             android:layout_alignTop="@+id/haus"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@+id/haus"
-            android:text="Kosten: 45 Coins"
+            android:text="Fortschritt: 45 Coins"
             android:textSize="15sp" />
 
         <ImageButton
             android:id="@+id/haus_kaufen"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_height="75dp"
             android:layout_alignLeft="@+id/haus_cost"
             android:layout_below="@+id/haus_cost"
             android:layout_marginTop="8sp"
             android:background="@null"
-            android:scaleType="fitXY"
-            android:src="@drawable/kaufen_button" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/spende" />
     </RelativeLayout>
     
         <RelativeLayout
@@ -80,7 +80,7 @@
             android:layout_marginTop="25sp"
             android:background="@null"
             android:scaleType="fitCenter"
-            android:src="@drawable/haus" />
+            android:src="@drawable/baum" />
 
         <TextView
             android:id="@+id/baum_cost"
@@ -89,19 +89,19 @@
             android:layout_alignTop="@+id/baum"
             android:layout_marginRight="5dp"
             android:layout_toRightOf="@+id/baum"
-            android:text="Kosten: 35 Coins"
+            android:text="Kaufen: 35 Coins"
             android:textSize="15sp" />
 
         <ImageButton
             android:id="@+id/baum_kaufen"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_height="75dp"
             android:layout_alignLeft="@+id/baum_cost"
             android:layout_below="@+id/baum_cost"
             android:layout_marginTop="8sp"
             android:background="@null"
-            android:scaleType="fitXY"
-            android:src="@drawable/kaufen_button" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/spende" />
     </RelativeLayout>
 
 </LinearLayout>

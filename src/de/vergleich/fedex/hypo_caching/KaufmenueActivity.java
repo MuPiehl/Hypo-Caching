@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.vergleich.fedex.backendservice.BackendService;
+import de.vergleich.fedex.backendservice.Element;
 import de.vergleich.fedex.backendservice.User;
 
 public class KaufmenueActivity extends Activity {
@@ -57,6 +58,23 @@ public class KaufmenueActivity extends Activity {
 					getResources().getString(
 							R.string.kaufmenue_kauf_erfolgreich, elementName,
 							coins), Toast.LENGTH_SHORT).show();
+			
+			if ("Haus".equals(elementName)) {
+				if (BackendService.getInstance().getUser().getHausFortschritt() == Element.NICHTS)
+					BackendService.getInstance().getUser().addElement(Element.FUNDAMENT);
+				else
+				if (BackendService.getInstance().getUser().getHausFortschritt() == Element.FUNDAMENT)
+					BackendService.getInstance().getUser().addElement(Element.ROHBAU);
+				else
+				if (BackendService.getInstance().getUser().getHausFortschritt() == Element.ROHBAU)
+					BackendService.getInstance().getUser().addElement(Element.ROHBAU_DACH);
+				else
+				if (BackendService.getInstance().getUser().getHausFortschritt() == Element.ROHBAU_DACH)
+					BackendService.getInstance().getUser().addElement(Element.HAUS);
+			}
+			else {
+				BackendService.getInstance().getUser().addElement(Element.BAUM);
+			}
 			BackendService.getInstance().getUser().addCoins(-coins);
 			new UpdateUserDataTask().execute();
 			updateCoinDisplay();
