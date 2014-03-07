@@ -8,18 +8,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".WhackAMoleActivity" >
 
-    <de.vergleich.fedex.hypo_caching.whackamole.Playground
-        android:id="@+id/playground1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <Button
         android:id="@+id/button_to_qr_whack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/playground1"
-        android:layout_alignLeft="@+id/playground1"
         android:layout_marginLeft="29dp"
         android:text="@string/whack_button_qr" />
+
+    <de.vergleich.fedex.hypo_caching.whackamole.Playground
+        android:id="@+id/playground1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_to_qr_whack"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -58,6 +58,7 @@ public class KaufmenueActivity extends Activity {
 							R.string.kaufmenue_kauf_erfolgreich, elementName,
 							coins), Toast.LENGTH_SHORT).show();
 			BackendService.getInstance().getUser().addCoins(-coins);
+			new UpdateUserDataTask().execute();
 			updateCoinDisplay();
 
 		} else {

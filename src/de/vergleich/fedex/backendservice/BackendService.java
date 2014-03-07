@@ -5,18 +5,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.Locale;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 public class BackendService {
@@ -24,7 +28,7 @@ public class BackendService {
 	private static final String NEWLINE = System.getProperty("line.separator");
 	private static final String TAG = "BackendService";
 	private static final String ACCEPTANCE_MIME = "application/json";
-	private static final String REST_SERVICE_URL = "http://localhost:8080/rest/";
+	private static final String REST_SERVICE_URL = "http://79.125.119.9:8080/hypo-caching-rest/services/users/";
 
 	private HttpClient httpClient = new DefaultHttpClient();
 	private HttpGet httpGet;
@@ -40,15 +44,18 @@ public class BackendService {
 		return instance;
 	}
 
-	public void put(User user) {
+	public void post(User user) {
 		JSONObject json = new JSONObject();
 		HttpClient httpclient;
-		HttpPut request = null;
+		HttpPost request = null;
 		try {
-			json.accumulate("id", user.getId());
+			json.accumulate("imei", user.getImei());
 			json.accumulate("coins", user.getCoins());
+			JSONArray arr = new JSONArray(user.getElemente());
+			json.accumulate("elemente", arr);
+//			Log.e(TAG, json.toString());
 			httpclient = new DefaultHttpClient();
-			request = new HttpPut(REST_SERVICE_URL);
+			request = new HttpPost(REST_SERVICE_URL);
 			StringEntity s = new StringEntity(json.toString());
 			s.setContentEncoding("UTF-8");
 			s.setContentType(ACCEPTANCE_MIME);
@@ -57,27 +64,24 @@ public class BackendService {
 			request.addHeader("accept", ACCEPTANCE_MIME);
 			httpClient.execute(request);
 
-		} catch (JSONException e) {
-			Log.e(TAG, e.toString());
-		} catch (UnsupportedEncodingException e) {
-			Log.e(TAG, e.toString());
-		} catch (ClientProtocolException e) {
-			Log.e(TAG, e.toString());
-		} catch (IOException e) {
+		} catch (Exception e) {
 			Log.e(TAG, e.toString());
 		}
 
 	}
 
-	public void get(String id) {
+	public void get(String imei) {
 		JSONObject result = null;
-		httpGet = new HttpGet(REST_SERVICE_URL + id);
+		Log.e(TAG, "Request: " + REST_SERVICE_URL + imei);
+		httpGet = new HttpGet(REST_SERVICE_URL + imei);
 		httpGet.addHeader("accept", ACCEPTANCE_MIME);
 
 		BufferedReader br = null;
 		try {
 			HttpResponse response = httpClient.execute(httpGet);
 			HttpEntity entity = response.getEntity();
+			
+			Log.e(TAG, "getEntity: " + entity);
 
 			if (entity != null) {
 				InputStream is = entity.getContent();
@@ -89,11 +93,8 @@ public class BackendService {
 					sb.append(currentLine).append(NEWLINE);
 				}
 				Log.d(TAG, "Received " + sb.toString());
-				// 03-06 21:12:59.800: E/BackendService(19914): ID: 357800059588758
-
-				Log.e(TAG, "ID: " + id);
 				// TODO: TestJSON austauschen
-				result = new JSONObject("{\"id\":\"357800059588758\", \"coins\":175}");
+				result = new JSONObject(sb.toString());
 				br.close();
 			}
 
@@ -112,13 +113,23 @@ public class BackendService {
 		User user = new User();
 		if (result != null) {
 			try {
-				user.setId(String.valueOf(result.get("id")));
+				user.setImei(String.valueOf(result.get("imei")));
 				user.setCoins(Integer.valueOf(result.getInt("coins")));
-			} catch (JSONException e) {
+				final JSONArray jsonArray = result.getJSONArray("elemente");
+				Log.e(TAG, jsonArray.toString());
+				for (int i = 0; i < jsonArray.length(); i++) {
+					user.addElement(Element.valueOf(String.valueOf(jsonArray.get(i)).toUpperCase(Locale.GERMAN)));
+					Log.d(TAG, Element.valueOf(String.valueOf(jsonArray.get(i)).toUpperCase(Locale.GERMAN)).toString());
+				}
+				
+				for(Element e : user.getElemente()) {
+					Log.e(TAG, e.toString());
+				}
+			} catch (Exception e) {
 				Log.e(TAG, e.toString());
 			}
 		} else {
-			user.setId(id);
+			user.setImei(imei);
 			user.setCoins(0);
 		}
 
