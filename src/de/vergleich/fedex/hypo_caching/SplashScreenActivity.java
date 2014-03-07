@@ -29,7 +29,7 @@ public class SplashScreenActivity extends Activity {
 			BackendService.getInstance().get(deviceId);
 
 			try {
-				Thread.sleep(2500);
+				Thread.sleep(500);
 
 			} catch (InterruptedException e) {
 				Log.e("SPLASH", e.toString());

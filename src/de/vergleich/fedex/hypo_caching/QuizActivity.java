@@ -37,23 +37,28 @@ public class QuizActivity extends Activity {
 	}
 
 	private void initCurrentQuestion() {
-		final Question nextQuestion = QuizService.getInstance()
+		final Question currentQuestion = QuizService.getInstance()
 				.getCurrentQuestion();
 
+		if (currentQuestion == null) {
+			finish();
+			return;
+		}
+
 		final TextView questionText = (TextView) findViewById(R.id.question_text);
-		questionText.setText(nextQuestion.getQuestionText());
+		questionText.setText(currentQuestion.getQuestionText());
 
-		answerButton1.setText(nextQuestion.getAnswers().get(0).getText());
-		answerButton1.setOnClickListener(new Evaluator(nextQuestion, 0));
+		answerButton1.setText(currentQuestion.getAnswers().get(0).getText());
+		answerButton1.setOnClickListener(new Evaluator(currentQuestion, 0));
 
-		answerButton2.setText(nextQuestion.getAnswers().get(1).getText());
-		answerButton2.setOnClickListener(new Evaluator(nextQuestion, 1));
+		answerButton2.setText(currentQuestion.getAnswers().get(1).getText());
+		answerButton2.setOnClickListener(new Evaluator(currentQuestion, 1));
 
-		answerButton3.setText(nextQuestion.getAnswers().get(2).getText());
-		answerButton3.setOnClickListener(new Evaluator(nextQuestion, 2));
+		answerButton3.setText(currentQuestion.getAnswers().get(2).getText());
+		answerButton3.setOnClickListener(new Evaluator(currentQuestion, 2));
 
-		answerButton4.setText(nextQuestion.getAnswers().get(3).getText());
-		answerButton4.setOnClickListener(new Evaluator(nextQuestion, 3));
+		answerButton4.setText(currentQuestion.getAnswers().get(3).getText());
+		answerButton4.setOnClickListener(new Evaluator(currentQuestion, 3));
 
 		updateCoinDisplay();
 	}
@@ -83,7 +88,7 @@ public class QuizActivity extends Activity {
 				BackendService.getInstance().getUser()
 						.addCoins(this.question.getCoins());
 
-//				new LoadNextQuestion().execute();
+				// new LoadNextQuestion().execute();
 				Intent intent = new Intent(
 						"com.google.zxing.client.android.SCAN");
 				intent.putExtra("SCAN_MODE", "QR_CODE_MODE, ONE_D_MODE");
@@ -95,20 +100,27 @@ public class QuizActivity extends Activity {
 			}
 		}
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		
+
 		if (requestCode == 0) {
 			if (resultCode == RESULT_OK) {
 				// Handle successful scan
 				String contents = data.getStringExtra("SCAN_RESULT");
-				
-				if (contents.equals(QuizService.getInstance().getCurrentQuestion().getExpectedQRCode())) {
+
+				if (contents.equals(QuizService.getInstance()
+						.getCurrentQuestion().getExpectedQRCode())) {
+					
+					Toast.makeText(QuizActivity.this,
+							getResources().getString(R.string.quiz_qr_richtig),
+							Toast.LENGTH_SHORT).show();
+					
+					BackendService.getInstance().getUser().addCoins(50);
+					
 					new LoadNextQuestion().execute();
-				}
-				else {
+				} else {
 					Toast.makeText(QuizActivity.this,
 							getResources().getString(R.string.quiz_qr_falsch),
 							Toast.LENGTH_SHORT).show();
@@ -152,7 +164,7 @@ public class QuizActivity extends Activity {
 			answerButton2.setEnabled(true);
 			answerButton3.setEnabled(true);
 			answerButton4.setEnabled(true);
-			
+
 			QuizService.getInstance().nextQuestion();
 			initCurrentQuestion();
 		}

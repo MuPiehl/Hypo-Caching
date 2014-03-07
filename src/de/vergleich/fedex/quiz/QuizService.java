@@ -54,12 +54,12 @@ public class QuizService {
 
 	public void nextQuestion() {
 		currentIndex++;
-		if (currentIndex >= questions.size()) {
-			currentIndex = 0;
-		}
 	}
 
 	public Question getCurrentQuestion() {
+		if (currentIndex >= questions.size())
+			return null;
+		
 		return questions.get(currentIndex);
 	}
 }

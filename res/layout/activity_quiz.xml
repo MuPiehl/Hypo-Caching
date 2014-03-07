@@ -36,34 +36,56 @@
 
         <TextView
             android:id="@+id/question_text"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_margin="15sp"
             android:text="@string/splash_text"
+            android:textColor="@color/gray"
             android:textSize="25sp" />
 
         <Button
             android:id="@+id/answer_button1"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            style="@style/ButtonText"
+            android:background="@color/red"
             android:text="Button" />
-
+            
         <Button
             android:id="@+id/answer_button2"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            style="@style/ButtonText"
+            android:background="@color/red"
             android:text="Button" />
 
         <Button
             android:id="@+id/answer_button3"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            style="@style/ButtonText"
+            android:background="@color/red"
             android:text="Button" />
 
         <Button
             android:id="@+id/answer_button4"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            style="@style/ButtonText"
+            android:background="@color/red"
             android:text="Button" />
     </LinearLayout>
 
