@@ -15,6 +15,7 @@ import de.vergleich.fedex.chopatree.ChopATreeActivity;
 public class MainActivity extends Activity {
 
 	private static final int REQUEST_CHOPATREE = 1;
+	private static final int COINS_FOR_CHOPATREE = 5;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,8 @@ public class MainActivity extends Activity {
 			switch (resultCode) {
 			case RESULT_OK:
 				if (data != null) {
-					// TODO: Aktion verarbeiten - z.B. Coins hochzählen
+					BackendService.getInstance().getUser().addCoins(COINS_FOR_CHOPATREE);
+					updateCoinDisplay();
 					showToastMessage(R.string.chopatree_msg_wood_done);
 				}
 				break;
@@ -88,7 +90,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void showToastMessage(String message) {
-		System.out.println(message); // FIXME: Das hier ist nur zum Spielen :)
+		//System.out.println(message); // FIXME: Das hier ist nur zum Spielen :)
 		Toast toast = Toast.makeText(this.getApplicationContext(), message,
 				Toast.LENGTH_LONG);
 		toast.show();
