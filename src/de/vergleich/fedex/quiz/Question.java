@@ -48,7 +48,7 @@ public class Question {
 		this.correctAnswerText = correctAnswerText;
 		return this;
 	}
-	
+
 	public String getExpectedQRCode() {
 		return expectedQRCode;
 	}

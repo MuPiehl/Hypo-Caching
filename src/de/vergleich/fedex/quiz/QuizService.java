@@ -42,7 +42,6 @@ public class QuizService {
 						.setCorrectAnswerText(
 								"Richtig! Deine nächste Station ist der rote Kühlschrank im Casino.")
 						.setExpectedQRCode("http://www.youtube.com/watch?v=QBtciu6Onnc"));
-
 		currentIndex = 0;
 	}
 
