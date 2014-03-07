@@ -87,6 +87,14 @@
             style="@style/ButtonText"
             android:background="@color/red"
             android:text="Button" />
+
+        <ImageView
+            android:id="@+id/zonk"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/zonk_selfpaint"
+            android:visibility="visible" />
+        
     </LinearLayout>
 
 </LinearLayout>

@@ -4,14 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.transition.Visibility;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.vergleich.fedex.backendservice.BackendService;
 import de.vergleich.fedex.backendservice.User;
-import de.vergleich.fedex.quiz.Answer;
 import de.vergleich.fedex.quiz.Question;
 import de.vergleich.fedex.quiz.QuizService;
 
@@ -21,6 +23,7 @@ public class QuizActivity extends Activity {
 	private Button answerButton2;
 	private Button answerButton3;
 	private Button answerButton4;
+	private ImageView zonk;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class QuizActivity extends Activity {
 		answerButton2 = (Button) findViewById(R.id.answer_button2);
 		answerButton3 = (Button) findViewById(R.id.answer_button3);
 		answerButton4 = (Button) findViewById(R.id.answer_button4);
+		zonk = (ImageView) findViewById(R.id.zonk);
 
 		initCurrentQuestion();
 	}
@@ -87,6 +91,7 @@ public class QuizActivity extends Activity {
 						Toast.LENGTH_SHORT).show();
 				BackendService.getInstance().getUser()
 						.addCoins(this.question.getCoins());
+				new UpdateUserDataTask().execute();
 
 				// new LoadNextQuestion().execute();
 				Intent intent = new Intent(
@@ -97,6 +102,7 @@ public class QuizActivity extends Activity {
 				Toast.makeText(QuizActivity.this,
 						getResources().getString(R.string.quiz_falsch),
 						Toast.LENGTH_SHORT).show();
+				new ShowZonk().execute();
 			}
 		}
 	}
@@ -118,6 +124,7 @@ public class QuizActivity extends Activity {
 							Toast.LENGTH_SHORT).show();
 					
 					BackendService.getInstance().getUser().addCoins(50);
+					new UpdateUserDataTask().execute();
 					
 					new LoadNextQuestion().execute();
 				} else {
@@ -131,6 +138,44 @@ public class QuizActivity extends Activity {
 				finish();
 			}
 		}
+	}
+	
+	private class ShowZonk extends AsyncTask<Void, Void, Void> {
+		
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			Log.e("ASDF", "Test");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+
+			zonk.setVisibility(View.VISIBLE);
+			answerButton1.setVisibility(View.INVISIBLE);
+			answerButton2.setVisibility(View.INVISIBLE);
+			answerButton3.setVisibility(View.INVISIBLE);
+			answerButton4.setVisibility(View.INVISIBLE);
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+
+			zonk.setVisibility(View.INVISIBLE);
+			answerButton1.setVisibility(View.VISIBLE);
+			answerButton2.setVisibility(View.VISIBLE);
+			answerButton3.setVisibility(View.VISIBLE);
+			answerButton4.setVisibility(View.VISIBLE);
+		}
+		
 	}
 
 	private class LoadNextQuestion extends AsyncTask<Void, Void, Void> {
